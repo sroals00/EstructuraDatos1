@@ -8,7 +8,9 @@ public class Service {
 	 private int nPeople;
 	 
 	 public Service(int nPeople, int nChildren) {
-		 // TODO
+		 this.nPeople = nPeople;
+		 this.nChildren = nChildren;
+		 this.order = new ArrayList<>();
 		 }
 	 
 	 
@@ -33,15 +35,20 @@ public class Service {
 		 return this.order;
 	 }
 	 
-	 
+	 public void addDish(String name, double price, int count) {
+		Dish dish = new Dish(name, price);
+		dish.setCount(count);
+		order.add(dish);
+	}
 	 //Calcula el total de este servicio, tiene que recorrer el array de platos calculando el total de cada plato, teniendo en cuenta que hay una cantidad de esos platos
 	 // total de un plato = count * price (número de platos * cantidad de platos)
 	 
 	 public double getTotalService() {
-		 // TODO
-		return 0;
-		
-			
+		double total = 0.0;
+		for (Dish dish : order) {
+			total += dish.getPrice() * dish.getCount();
+		}
+		return total;
 	 }
 	 
 	 @Override
